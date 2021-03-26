@@ -38,7 +38,6 @@
         var xhr = new XMLHttpRequest();
 
         xhr.onload = function () {
-          try {
             var payload = JSON.parse(xhr.response);
             var message = payload.message;
             var title = payload.title;
@@ -61,14 +60,8 @@
             } else {
               location.replace(title);
             }
-          } catch (e) {
-            location.replace(homepage);
-          }
         };
 
-        xhr.onerror = function () {
-          location.replace(homepage);
-        };
         xhr.open("GET", GITHUB_ISSUES_LINK + issueNumber);
         xhr.send();
       }
